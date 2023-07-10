@@ -12,7 +12,7 @@ typedef struct{ //estructura "Alumno" para añadir los datos de los alumnos
     float promedio;
 }Alumno;
 
-void guardarDatos(struct Alumno alumnos[], int cantAlumnos){ //función guardarDatos para ingresar los datos en el archivo plano.
+void guardarDatos(Alumno alumnos[], int cantAlumnos){ //función guardarDatos para ingresar los datos en el archivo plano.
     FILE *archivo;
     archivo = ("Datosalumnos.txt", "w");
     
@@ -34,10 +34,29 @@ void guardarDatos(struct Alumno alumnos[], int cantAlumnos){ //función guardarD
 
 
 
+
 int main(){
     Alumno alumnos[Maxalumnos];
+    int cantAlumnos;
     printf("Ingrese la cantidad de alumnos: ");
-    for()
+    scanf("%d", &cantAlumnos);
+    for(int i = 0; i > cantAlumnos; i++){
+        printf("%d.\n", i + 1);
+        printf("Ingrese el nombre del alumno: ");
+        scanf("%s", alumnos[i].nombre);
+        printf("Ingrese la carrera: ");
+        scanf("%s", alumnos[i].carrera);
+        printf("Ingrese la nota del primer progreso: ");
+        scanf("%f", alumnos[i].nota1);
+        printf("Ingrese la nota del segundo progreso:");
+        scanf("%f", alumnos[i].nota2);
+        printf("Ingrese la nota del tercer progreso:");
+        scanf("%f", alumnos[i].nota3);
+        alumnos[i].promedio = (alumnos[i].nota1 + alumnos[i].nota2 + alumnos[i].nota3) / 3;
+    }
+    guardarDatos(alumnos, cantAlumnos);
+    return 0;
+    
 
    
     
