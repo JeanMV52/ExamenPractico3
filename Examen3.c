@@ -12,18 +12,23 @@ typedef struct{ //estructura "Alumno" para añadir los datos de los alumnos
     float promedio;
 }Alumno;
 
+
+
+
+
+
 void guardarDatos(Alumno alumnos[], int cantAlumnos){ //función guardarDatos para ingresar los datos en el archivo plano.
     FILE *archivo;
-    archivo = ("Datosalumnos.txt", "w");
+    archivo = fopen("Datosalumnos.txt", "a+");
     
-    for(int i = 0; i > cantAlumnos; i++){ //función for para contar la cantidad de alumnos y agregar sus datos.
-        fprintf(archivo, "%d ;", i + 1);
-        fprintf(archivo, "%s ;", alumnos[i].nombre);
-        fprintf(archivo, "%s ;", alumnos[i].carrera);
-        fprintf(archivo, "%.2f ;", alumnos[i].nota1);
-        fprintf(archivo, "%.2f ;", alumnos[i].nota2);
-        fprintf(archivo, "%.2f ;", alumnos[i].nota3);
-        fprintf(archivo, "%.2f", alumnos[i].promedio);
+    for(int i = 0; i < cantAlumnos; i++){ //función for para contar la cantidad de alumnos y agregar sus datos.
+        fprintf(archivo, "%d ; ", i + 1);
+        fprintf(archivo, "%s ; ", alumnos[i].nombre);
+        fprintf(archivo, "%s ; ", alumnos[i].carrera);
+        fprintf(archivo, "%.2f ; ", alumnos[i].nota1);
+        fprintf(archivo, "%.2f ; ", alumnos[i].nota2);
+        fprintf(archivo, "%.2f ; ", alumnos[i].nota3);
+        fprintf(archivo, "%.2f\n", alumnos[i].promedio);
 
 
     }
@@ -32,26 +37,23 @@ void guardarDatos(Alumno alumnos[], int cantAlumnos){ //función guardarDatos pa
 }
 
 
-
-
-
 int main(){
     Alumno alumnos[Maxalumnos];
     int cantAlumnos;
     printf("Ingrese la cantidad de alumnos: ");
     scanf("%d", &cantAlumnos);
-    for(int i = 0; i > cantAlumnos; i++){
+    for(int i = 0; i < cantAlumnos; i++){
         printf("%d.\n", i + 1);
         printf("Ingrese el nombre del alumno: ");
         scanf("%s", alumnos[i].nombre);
         printf("Ingrese la carrera: ");
         scanf("%s", alumnos[i].carrera);
         printf("Ingrese la nota del primer progreso: ");
-        scanf("%f", alumnos[i].nota1);
+        scanf("%f", &alumnos[i].nota1);
         printf("Ingrese la nota del segundo progreso:");
-        scanf("%f", alumnos[i].nota2);
+        scanf("%f", &alumnos[i].nota2);
         printf("Ingrese la nota del tercer progreso:");
-        scanf("%f", alumnos[i].nota3);
+        scanf("%f", &alumnos[i].nota3);
         alumnos[i].promedio = (alumnos[i].nota1 + alumnos[i].nota2 + alumnos[i].nota3) / 3;
     }
     guardarDatos(alumnos, cantAlumnos);
